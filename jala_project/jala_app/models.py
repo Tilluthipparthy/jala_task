@@ -11,7 +11,7 @@ class Employees(models.Model):
     emp_address = models.CharField(max_length=500)
     emp_country = models.CharField(max_length=100)
     emp_city = models.CharField(max_length=100)
-    emp_ocity = models.CharField(max_length=100, blank=True, null=True)  # FIXED
+    emp_ocity = models.CharField(max_length=100, blank=True, null=True) 
     emp_skills = models.CharField(max_length=500)
 
     def __str__(self):

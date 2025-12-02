@@ -21,7 +21,7 @@ def employee_form_page(request):
             emp_form.save()
             return redirect('/base')
         else:
-            # Return the same page WITH errors
+        
             return render(request, 'create_employeepage.html', {'emp_form': emp_form})
         
 
@@ -35,7 +35,7 @@ def employee_search_page(request):
         all_employees = Employees.objects.all()
         return render(request, 'search_employeepage.html', {'all_employees': all_employees})
 
-    # update button 
+
 
 
 
@@ -55,7 +55,7 @@ def update_employee(request, id):
         emp_form = employees_form(request.POST, instance=employee_object)
         if emp_form.is_valid():
 
-            emp_form.save()   # ✅ FIX 1 (you missed parentheses)
+            emp_form.save()   
             return redirect('/employee_search_page')
 
         else:
