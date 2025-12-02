@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<form action="" method="post">
+  {% csrf_token %}
+
+  <!-- First + Last Name in one line -->
+  <div class="two-input-row">
+    <div>
+      <label for="id_emp_fname">First Name</label>
+      <input type="text" name="emp_fname" id="id_emp_fname" value="{{ employee.emp_fname }}">
+    </div>
+    <div>
+      <label for="id_emp_lname">Last Name</label>
+      <input type="text" name="emp_lname" id="id_emp_lname" value="{{ employee.emp_lname }}">
+    </div>
+  </div>
+
+  <!-- Email -->
+  <div class="form-row">
+    <label for="id_emp_email">Email</label>
+    <input type="email" name="emp_email" id="id_emp_email" value="{{ employee.emp_email }}">
+  </div>
+
+  <!-- Mobile Number -->
+  <div class="form-row">
+    <label for="id_emp_number">Mobile Number</label>
+    <input type="number" name="emp_number" id="id_emp_number" value="{{ employee.emp_number }}">
+  </div>
+
+  <!-- Date of Birth -->
+  <div class="form-row">
+    <label for="id_emp_birth">Date Of Birth</label>
+    <input type="date" name="emp_birth" id="id_emp_birth" value="{{ employee.emp_birth|date:'Y-m-d' }}">
+  </div>
+
+  <!-- Gender -->
+  <div class="form-row">
+    <label>Gender</label>
+    <input type="radio" name="emp_gender" value="Male" id="gender_male"
+           {% if employee.emp_gender == "Male" %}checked{% endif %}>
+    <label for="gender_male">Male</label>
+
+    <input type="radio" name="emp_gender" value="Female" id="gender_female"
+           {% if employee.emp_gender == "Female" %}checked{% endif %}>
+    <label for="gender_female">Female</label>
+  </div>
+
+  <!-- Address -->
+  <div class="form-row">
+    <label for="id_emp_address">Address</label>
+    <textarea name="emp_address" id="id_emp_address" rows="3">{{ employee.emp_address }}</textarea>
+  </div>
+
+  <!-- Country + City in one line -->
+  <div class="two-input-row">
+    <div>
+      <label for="id_emp_country">Country</label>
+      <select name="emp_country" id="id_emp_country">
+        <option value="">Select Country</option>
+        <option value="India" {% if employee.emp_country == "India" %}selected{% endif %}>India</option>
+        <option value="USA" {% if employee.emp_country == "USA" %}selected{% endif %}>USA</option>
+      </select>
+    </div>
+    <div>
+      <label for="id_emp_city">City</label>
+      <select name="emp_city" id="id_emp_city">
+        <option value="">Select City</option>
+        <option value="Hyderabad" {% if employee.emp_city == "Hyderabad" %}selected{% endif %}>Hyderabad</option>
+        <option value="Bangalore" {% if employee.emp_city == "Bangalore" %}selected{% endif %}>Bangalore</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Other City -->
+  <div class="form-row">
+    <input type="checkbox" name="other_city_check" id="other_city_check"
+           {% if employee.emp_ocity %}checked{% endif %}>
+    <label for="other_city_check">Other City</label>
+    <input type="text" name="emp_ocity" id="id_emp_ocity" value="{{ employee.emp_ocity }}" {% if not employee.emp_ocity %}hidden{% endif %}>
+  </div>
+
+  <!-- Skills -->
+  <div class="form-row">
+    <label>Skills</label><br>
+    <input type="checkbox" name="emp_skills" value="AWS" {% if "AWS" in employee.emp_skills %}checked{% endif %}> AWS<br>
+    <input type="checkbox" name="emp_skills" value="DevOps" {% if "DevOps" in employee.emp_skills %}checked{% endif %}> DevOps<br>
+    <input type="checkbox" name="emp_skills" value="Full Stack Developer" {% if "Full Stack Developer" in employee.emp_skills %}checked{% endif %}> Full Stack Developer<br>
+    <input type="checkbox" name="emp_skills" value="Middleware" {% if "Middleware" in employee.emp_skills %}checked{% endif %}> Middleware<br>
+    <input type="checkbox" name="emp_skills" value="QA-Automation" {% if "QA-Automation" in employee.emp_skills %}checked{% endif %}> QA-Automation<br>
+    <input type="checkbox" name="emp_skills" value="WebServices" {% if "WebServices" in employee.emp_skills %}checked{% endif %}> WebServices<br>
+  </div>
+
+  <!-- Buttons -->
+  <button type="submit" class="btn btn-success">save</button>
+  <button type="reset" class="btn btn-danger">Cancel</button>
+</form>
+
+
+
+
+
+
+
+<script>
+    const otherChk = document.getElementById("other_city_check");
+    const cityDropdown = document.getElementById("id_emp_city");
+    const otherCityDiv = document.getElementById("id_emp_ocity");
+
+    otherChk.addEventListener("change", function () {
+        if (this.checked) {
+            otherCityDiv.style.display = "block";
+            otherCityDiv.hidden=false;  // show text field
+            cityDropdown.disabled = true;           // disable dropdown
+            cityDropdown.value = "";                // clear selection
+        } else {
+            otherCityDiv.style.display = "none";    // hide text field
+            cityDropdown.disabled = false;          // enable dropdown
+            document.getElementById("other_city_input").value = ""; // clear text
+        }
+    });
+</script>
+{% endblock %}
+

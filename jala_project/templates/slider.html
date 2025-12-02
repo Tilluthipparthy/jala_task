@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  .slider-wrapper {
+    padding: 30px;
+    font-family: Arial, sans-serif;
+    margin-left: 250px;
+  }
+
+  .breadcrumb {
+    text-align: right;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  .slider-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .slider-box {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  input[type="range"] {
+    width: 100%;
+    accent-color: #007bff;
+  }
+
+  .slider-value {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #007bff;
+  }
+</style>
+
+<div class="slider-wrapper">
+  <div class="breadcrumb">Home > More > Slider</div>
+
+  <div class="slider-title">Slider</div>
+
+  <div class="slider-box">
+    <input type="range" min="0" max="100" value="37" id="sliderInput" oninput="updateSliderValue()">
+    <div class="slider-value" id="sliderValue">Current Slider Value: 37</div>
+  </div>
+</div>
+
+<script>
+  function updateSliderValue() {
+    const slider = document.getElementById('sliderInput');
+    const display = document.getElementById('sliderValue');
+    display.innerText = `Current Slider Value: ${slider.value}`;
+  }
+</script>
+{% endblock %}

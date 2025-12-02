@@ -1,0 +1,223 @@
+/* General Reset */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Sidebar */
+.sidebar {
+    height: 100vh;
+    background-color: #343a40; /* Bootstrap dark */
+    color: #fff;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    overflow-y: auto;
+    z-index: 10000;
+}
+
+.sidebar h4 {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.sidebar p {
+    font-size: 14px;
+    color: #ccc;
+}
+
+.sidebar a {
+    color: #fff;
+    display: block;
+    padding: 8px 0;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.sidebar a:hover {
+    background-color: #495057;
+    border-radius: 4px;
+}
+
+/* Navbar (top bar) */
+.navbar-custom {
+    background-color: #007bff; /* Bootstrap primary */
+    padding: 10px 20px;
+    margin-left: 250px; /* offset for sidebar */
+    color: #fff;
+}
+
+.navbar-custom a {
+    color: #fff;
+    margin-right: 15px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.navbar-custom a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 250px; /* offset for sidebar */
+    padding: 30px;
+}
+
+.highlight {
+    background-color: #ffc107;
+    padding: 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+    .navbar-custom {
+        margin-left: 0;
+    }
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+.sidebar a.active {
+    background-color: #495057;
+    border-radius: 4px;
+}
+.content{
+    margin-top: 50px;
+    margin-left: 250px;
+}
+.copy_right {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 3px 3px 3px gray;
+    background-color: #f1f1f1;
+    padding: 10px;
+    text-align: center;
+    
+}
+
+/* General form styling */
+/* Center the form with fixed width */
+
+/* Centered form with fixed width */
+/* Container spacing */
+form {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.08);
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 250px;
+}
+
+/* Label styling */
+label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+/* Inputs & Select styling */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #f7f8fa;
+    transition: 0.2s;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #3b82f6;
+    background: #fff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(60,120,255,0.4);
+}
+
+/* Two inputs in one line (First+Last name, Country+City) */
+.two-input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+/* Regular form row spacing */
+.form-row {
+    margin-bottom: 20px;
+}
+
+/* Radio buttons inline */
+.form-row input[type="radio"] {
+    margin-right: 4px;
+}
+
+.form-row label.inline-label {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+/* Checkbox + Other City alignment */
+#other_city_check {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+#id_emp_ocity {
+    width: 250px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    font-weight: 600;
+    border-radius: 6px;
+    border: none;
+    margin-right: 10px;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #218838;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}

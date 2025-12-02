@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;                /* table fills container width */
+    font-family: Arial, sans-serif;
+    font-size: 13px;            /* slightly smaller font */
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+th {
+    background-color: #007bff;  /* Bootstrap blue */
+    color: #fff;
+    text-align: left;
+    padding: 6px 8px;           /* reduced padding */
+    border: 1px solid #ddd;
+    font-weight: 600;
+}
+
+/* Table cells */
+td {
+    border: 1px solid #ddd;
+    padding: 6px 8px;           /* reduced padding for compactness */
+    vertical-align: middle;
+}
+
+</style>
+<form action="{% url 'image' %}" method="POST" enctype="multipart/form-data">
+    {%csrf_token %}
+    <div class="two-input-row">
+    <div>
+      <label for="img_name">IMAGE</label>
+      <input type="text" name="img_name" id="img_name">
+    </div>
+    <div>
+      <label for="img_file">FILE NAME</label>
+      <input type="file" name="img_file" id="img_file" required onchange="autoFillFileName()">
+    </div>
+
+    <div>
+        <button class="btn btn-success">UPLOAD</button>
+    </div>
+  </div>
+</form>
+
+
+
+  <table border="2"  style="margin-left:250px;">
+    <tr>
+    <th>IMAGE</th>
+    <th>IMG_NAME</th>
+
+</tr>
+
+{% for img_i  in img %}
+
+<tr>
+    <td>
+        <img src="{{ img_i.image.url }}" width="100">
+
+
+    </td>
+    <td>
+        {{img_i.img_name}}
+        
+    </td>
+</tr>
+{% endfor %}
+
+
+    
+
+  </table>
+
+  <script>
+  function autoFillFileName() {
+    const fileInput = document.getElementById('img_file');
+    const textInput = document.getElementById('img_name');
+    if (fileInput.files.length > 0) {
+      textInput.value = fileInput.files[0].name;
+    }
+  }
+</script>
+{% endblock %}

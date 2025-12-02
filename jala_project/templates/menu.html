@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  .menu-wrapper {
+    padding: 30px;
+    font-family: Arial, sans-serif;
+    margin-left: 250px;
+  }
+
+  .breadcrumb {
+    text-align: right;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  .tab-header {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .tab-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+  }
+
+  .tab-button.active {
+    background-color: #0056b3;
+  }
+
+  .tab-content {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 0 5px 5px 5px;
+    background-color: #f9f9f9;
+  }
+
+  .submenu-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .submenu-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .submenu-button:hover {
+    background-color: #0056b3;
+  }
+
+  .nested-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    min-width: 160px;
+    z-index: 1000;
+  }
+
+  .submenu-button:hover .nested-menu {
+    display: block;
+  }
+
+  .nested-item {
+    padding: 10px;
+    color: #333;
+    cursor: pointer;
+  }
+
+  .nested-item:hover {
+    background-color: #e9ecef;
+  }
+
+  .message-box {
+    font-weight: bold;
+    color: #007bff;
+  }
+</style>
+
+<div class="menu-wrapper">
+  <div class="breadcrumb">Home > More > Menu</div>
+
+  <div class="tab-header">
+    <button class="tab-button" onclick="showTab('single')">Single Menus</button>
+    <button class="tab-button active" onclick="showTab('sub')">Sub Menus</button>
+  </div>
+
+  <div class="tab-content" id="subTab">
+    <div class="submenu-buttons">
+      <!-- Testing -->
+      <div class="submenu-button">
+        Testing
+        <div class="nested-menu">
+          <div class="nested-item" onclick="selectMenu('Unit Testing')">Unit Testing</div>
+          <div class="nested-item" onclick="selectMenu('Integration Testing')">Integration Testing</div>
+          <div class="nested-item" onclick="selectMenu('System Testing')">System Testing</div>
+        </div>
+      </div>
+
+      <!-- Java -->
+      <div class="submenu-button">
+        Java
+        <div class="nested-menu">
+          <div class="nested-item" onclick="selectMenu('Core Java')">Core Java</div>
+          <div class="nested-item" onclick="selectMenu('Advanced Java')">Advanced Java</div>
+          <div class="nested-item" onclick="selectMenu('Spring Framework')">Spring Framework</div>
+        </div>
+      </div>
+
+      <!-- .Net -->
+      <div class="submenu-button">
+        .Net
+        <div class="nested-menu">
+          <div class="nested-item" onclick="selectMenu('ASP.NET')">ASP.NET</div>
+          <div class="nested-item" onclick="selectMenu('C#')">C#</div>
+          <div class="nested-item" onclick="selectMenu('VB.NET')">VB.NET</div>
+        </div>
+      </div>
+
+      <!-- Database -->
+      <div class="submenu-button">
+        Data Base
+        <div class="nested-menu">
+          <div class="nested-item" onclick="selectMenu('MySQL')">MySQL</div>
+          <div class="nested-item" onclick="selectMenu('PL/SQL')">PL/SQL</div>
+          <div class="nested-item" onclick="selectMenu('PostgreSQL')">PostgreSQL</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="message-box" id="messageBox">Hover and click a submenu option.</div>
+  </div>
+
+  <div class="tab-content" id="singleTab" style="display: none;">
+    <p>This is the Single Menus tab content.</p>
+  </div>
+</div>
+
+<script>
+  function showTab(tabName) {
+    document.getElementById('subTab').style.display = tabName === 'sub' ? 'block' : 'none';
+    document.getElementById('singleTab').style.display = tabName === 'single' ? 'block' : 'none';
+
+    const buttons = document.querySelectorAll('.tab-button');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    if (tabName === 'sub') buttons[1].classList.add('active');
+    else buttons[0].classList.add('active');
+  }
+
+  function selectMenu(menuName) {
+    document.getElementById('messageBox').innerText = `You Have Selected ${menuName} Menu Option.`;
+  }
+</script>
+{% endblock %}

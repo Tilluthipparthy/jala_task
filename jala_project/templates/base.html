@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}JALA Academy{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<!-- Top Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">JALA Academy</a>
+
+    <!-- Hamburger icon for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar (desktop) -->
+    <div class="col-md-3 d-none d-md-block sidebar bg-dark text-white p-3">
+      <h4>Magnus</h4>
+      <p>Guest User</p>
+      <hr>
+
+      <a href="{% url 'home' %}" class="text-white d-block">Home</a>
+
+      <!-- Employee collapsible -->
+      <a class="text-white d-block d-flex justify-content-between align-items-center"
+         data-bs-toggle="collapse" href="#EmployeeMenu" role="button" aria-expanded="false" aria-controls="EmployeeMenu">
+        <span>Employee</span>
+        <span class="caret-icon">▸</span>
+      </a>
+      <div class="collapse ps-3" id="EmployeeMenu">
+        <a href="{% url 'employee_form' %}" class="text-white d-block">Create</a>
+        <a href="{% url 'employee_search' %}" class="text-white d-block">Search</a>
+      </div>
+
+      <!-- More collapsible -->
+      <a class="text-white d-block d-flex justify-content-between align-items-center"
+         data-bs-toggle="collapse" href="#moreMenu" role="button" aria-expanded="false" aria-controls="moreMenu">
+        <span>More</span>
+        <span class="caret-icon">▸</span>
+      </a>
+      <div class="collapse ps-3" id="moreMenu">
+        <a href="{% url 'multiple_tabs' %}" class="text-white d-block">Multiple Tabs</a>
+        <a href="{% url 'menu' %}" class="text-white d-block">Menu</a>
+        <a href="{% url 'autocomplete' %}" class="text-white d-block">Autocomplete</a>
+        <a href="{% url 'collapse' %}" class="text-white d-block">Collapsible Content</a>
+        <a href="{% url 'image' %}" class="text-white d-block">Image</a>
+        <a href="{% url 'slider' %}" class="text-white d-block">Slider</a>
+        <a href="{% url 'tooltip' %}" class="text-white d-block">Tooltips</a>
+        <a href="{% url 'popup' %}" class="text-white d-block">Popups</a>
+        <a href="{% url 'links' %}" class="text-white d-block">Links</a>
+        <a href="{% url 'css' %}" class="text-white d-block">CSS Properties</a>
+        <a href="{% url 'iframe' %}" class="text-white d-block">Iframes</a>
+      </div>
+
+      <!-- Settings -->
+      <a href="#" class="text-white d-block">Settings</a>
+    </div>
+
+    <!-- Offcanvas Sidebar (mobile) -->
+    <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="sidebarMenu">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Magnus</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+      </div>
+      <div class="offcanvas-body">
+        <p>Guest User</p>
+        <hr>
+        <a href="{% url 'home' %}" class="text-white d-block">Home</a>
+        <a class="text-white d-block d-flex justify-content-between align-items-center"
+           data-bs-toggle="collapse" href="#EmployeeMenuMobile" role="button" aria-expanded="false" aria-controls="EmployeeMenuMobile">
+          <span>Employee</span>
+          <span class="caret-icon">▸</span>
+        </a>
+        <div class="collapse ps-3" id="EmployeeMenuMobile">
+          <a href="#" class="text-white d-block">Create</a>
+          <a href="#" class="text-white d-block">Search</a>
+        </div>
+        <a class="text-white d-block d-flex justify-content-between align-items-center"
+           data-bs-toggle="collapse" href="#moreMenuMobile" role="button" aria-expanded="false" aria-controls="moreMenuMobile">
+          <span>More</span>
+          <span class="caret-icon">▸</span>
+        </a>
+        <div class="collapse ps-3" id="moreMenuMobile">
+          <a href="#" class="text-white d-block">Multiple Tabs</a>
+          <a href="#" class="text-white d-block">Menu</a>
+          <a href="#" class="text-white d-block">Autocomplete</a>
+          <a href="#" class="text-white d-block">Collapsible Content</a>
+          <a href="#" class="text-white d-block">Imaged</a>
+          <a href="#" class="text-white d-block">Slider</a>
+          <a href="#" class="text-white d-block">Tooltips</a>
+          <a href="#" class="text-white d-block">Popups</a>
+          <a href="#" class="text-white d-block">Links</a>
+          <a href="#" class="text-white d-block">CSS Properties</a>
+          <a href="#" class="text-white d-block">Iframes</a>
+        </div>
+        <a href="#" class="text-white d-block">Settings</a>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-md-9 p-4">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Toggle caret icons
+  document.querySelectorAll('[data-bs-toggle="collapse"]').forEach(link => {
+    link.addEventListener('click', function() {
+      const icon = this.querySelector('.caret-icon');
+      const targetId = this.getAttribute('href').replace('#', '');
+      const target = document.getElementById(targetId);
+      setTimeout(() => {
+        if (target.classList.contains('show')) {
+          icon.textContent = '▾'; // down arrow
+        } else {
+          icon.textContent = '▸'; // right arrow
+        }
+      }, 200);
+    });
+  });
+</script>
+</body>
+</html>

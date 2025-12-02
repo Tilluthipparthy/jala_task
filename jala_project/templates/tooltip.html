@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  .tooltip-wrapper {
+    padding: 30px;
+    font-family: Arial, sans-serif;
+    margin-left: 250px;
+  }
+
+  .breadcrumb {
+    text-align: right;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  .tooltip-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .tab-header {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #007bff;
+  }
+
+  .tooltip-button {
+    position: relative;
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+
+  .tooltip-button:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 13px;
+    white-space: nowrap;
+    z-index: 1000;
+  }
+</style>
+
+<div class="tooltip-wrapper">
+  <div class="breadcrumb">Home > More > Tooltip</div>
+
+  <div class="tooltip-title">Tooltip</div>
+  <div class="tab-header">Tooltips</div>
+
+  <button class="tooltip-button">
+    Check the Tooltip Before You Click.
+    <span class="tooltip-text">Thank you for being here!</span>
+  </button>
+</div>
+{% endblock %}
